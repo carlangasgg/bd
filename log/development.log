@@ -62780,3 +62780,1498 @@ Processing by TropasController#index as HTML
   Rendered tropas/index.html.erb within layouts/application (8.3ms)
   [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 2]]
 Completed 200 OK in 267ms (Views: 265.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/tropas" for 127.0.0.1 at 2014-11-23 20:21:52 -0300
+Processing by TropasController#index as HTML
+  [1m[36mTropa Load (8.9ms)[0m  [1mSELECT "tropas".* FROM "tropas"[0m
+SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"
+  Rendered tropas/index.html.erb within layouts/application (19.7ms)
+Completed 500 Internal Server Error in 180ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"):
+  app/views/tropas/index.html.erb:21:in `_app_views_tropas_index_html_erb__3757807812662854886_69892507370680'
+  app/controllers/tropas_controller.rb:8:in `index'
+
+
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_source.erb (14.5ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_trace.html.erb (6.2ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.4ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (50.8ms)
+  [1m[36m (107.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (131.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20141119201822)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "puntos_experiencia" integer, "nivel" integer, "partidas_ganadas" integer, "partidas_perdidas" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141119201822"]]
+  [1m[35m (127.6ms)[0m  commit transaction
+Migrating to AddDeviseToUsers (20141119201900)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "users" ADD "email" varchar DEFAULT '' NOT NULL
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "encrypted_password" varchar DEFAULT '' NOT NULL[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "reset_password_token" varchar
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "reset_password_sent_at" datetime[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "remember_created_at" datetime
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "sign_in_count" integer DEFAULT 0 NOT NULL[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "current_sign_in_at" datetime
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "last_sign_in_at" datetime[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "current_sign_in_ip" varchar
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "last_sign_in_ip" varchar[0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141119201900"]]
+  [1m[35m (145.4ms)[0m  commit transaction
+Migrating to AgregarDatosDefaultUser (20141119202924)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  CREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "puntos_experiencia" integer, "nivel" integer, "partidas_ganadas" integer, "partidas_perdidas" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar) 
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (43.3ms)[0m  [1mCREATE UNIQUE INDEX "tindex_ausers_on_reset_password_token" ON "ausers" ("reset_password_token")[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "tindex_ausers_on_email" ON "ausers" ("email")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "users"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "users"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "puntos_experiencia" integer, "nivel" integer, "partidas_ganadas" integer DEFAULT 0, "partidas_perdidas" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "ausers"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "ausers"
+  [1m[36m (0.3ms)[0m  [1mCREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "puntos_experiencia" integer, "nivel" integer, "partidas_ganadas" integer DEFAULT 0, "partidas_perdidas" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "tindex_ausers_on_reset_password_token" ON "ausers" ("reset_password_token")
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "tindex_ausers_on_email" ON "ausers" ("email")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "users"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "puntos_experiencia" integer, "nivel" integer, "partidas_ganadas" integer DEFAULT 0, "partidas_perdidas" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "ausers"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "ausers"[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "puntos_experiencia" integer, "nivel" integer, "partidas_ganadas" integer DEFAULT 0, "partidas_perdidas" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "tindex_ausers_on_reset_password_token" ON "ausers" ("reset_password_token")[0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "tindex_ausers_on_email" ON "ausers" ("email")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "users"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "users"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "puntos_experiencia" integer, "nivel" integer DEFAULT 1, "partidas_ganadas" integer DEFAULT 0, "partidas_perdidas" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "ausers"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "ausers"
+  [1m[36m (0.3ms)[0m  [1mCREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "puntos_experiencia" integer, "nivel" integer DEFAULT 1, "partidas_ganadas" integer DEFAULT 0, "partidas_perdidas" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "tindex_ausers_on_reset_password_token" ON "ausers" ("reset_password_token")
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "tindex_ausers_on_email" ON "ausers" ("email")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "users"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "puntos_experiencia" integer DEFAULT 0, "nivel" integer DEFAULT 1, "partidas_ganadas" integer DEFAULT 0, "partidas_perdidas" integer DEFAULT 0, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "ausers"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "ausers"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141119202924"]]
+  [1m[36m (143.5ms)[0m  [1mcommit transaction[0m
+Migrating to ModificarDatosDefaultUser (20141119204931)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "users" ADD "permiso" varchar DEFAULT 'usuario'[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141119204931"]]
+  [1m[36m (105.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRecursos (20141122193550)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "recursos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141122193550"]]
+  [1m[36m (113.8ms)[0m  [1mcommit transaction[0m
+Migrating to CrearTablaRecursosUsuario (20141123212614)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "recursos_users" ("recurso_id" integer, "user_id" integer) [0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_recursos_users_on_recurso_id" ON "recursos_users" ("recurso_id")
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE  INDEX "index_recursos_users_on_user_id" ON "recursos_users" ("user_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141123212614"]]
+  [1m[35m (103.0ms)[0m  commit transaction
+Migrating to CrearTablaTropasUsuario (20141123213131)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "tropas_users" ("tropa_id" integer, "user_id" integer) 
+  [1m[36m (0.6ms)[0m  [1mCREATE  INDEX "index_tropas_users_on_tropa_id" ON "tropas_users" ("tropa_id")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "index_tropas_users_on_user_id" ON "tropas_users" ("user_id")[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141123213131"]]
+  [1m[36m (119.4ms)[0m  [1mcommit transaction[0m
+Migrating to AgregarAtributosRecursosTropas (20141123213726)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "recursos_users" ADD "cantidad" integer DEFAULT 0[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141123213726"]]
+  [1m[36m (117.4ms)[0m  [1mcommit transaction[0m
+Migrating to BorrarTablaTropas (20141123222644)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141123222644"]]
+  [1m[35m (118.6ms)[0m  commit transaction
+Migrating to CreateTropas (20141123222818)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141123222818"]]
+  [1m[36m (119.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_recursos_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_recursos_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tropas_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tropas_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started GET "/tropas" for 127.0.0.1 at 2014-11-23 20:24:43 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TropasController#index as HTML
+  [1m[35mTropa Load (1.1ms)[0m  SELECT "tropas".* FROM "tropas"
+SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"
+  Rendered tropas/index.html.erb within layouts/application (8.8ms)
+Completed 500 Internal Server Error in 47ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"):
+  app/views/tropas/index.html.erb:21:in `_app_views_tropas_index_html_erb___1299676788509639679_69990251958840'
+  app/controllers/tropas_controller.rb:8:in `index'
+
+
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_source.erb (13.0ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_trace.html.erb (4.7ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.1ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (37.4ms)
+
+
+Started GET "/tropas" for 127.0.0.1 at 2014-11-23 20:24:45 -0300
+Processing by TropasController#index as HTML
+  [1m[36mTropa Load (1.1ms)[0m  [1mSELECT "tropas".* FROM "tropas"[0m
+SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"
+  Rendered tropas/index.html.erb within layouts/application (5.3ms)
+Completed 500 Internal Server Error in 10ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"):
+  app/views/tropas/index.html.erb:21:in `_app_views_tropas_index_html_erb___1299676788509639679_69990251958840'
+  app/controllers/tropas_controller.rb:8:in `index'
+
+
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_source.erb (14.3ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_trace.html.erb (5.1ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.3ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (42.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-23 20:24:48 -0300
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.7ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+Completed 200 OK in 603ms (Views: 601.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/application/bootstrap-359cc99e5935ae25dc7342669a596480.css?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/scaffolds-c18451178bf0711571ecda431710d948.css?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/tropas-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/menu-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/recursos-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/bootstrap.min-c22424a6864e5fc94e6c17fdb18261e1.css?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/combate-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/welcome-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application-20af26569f2ba574a209e4c3962173ef.css?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/jquery-dfb1e594c3e61a04cc388702c3feec1f.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/jquery_ujs-ae280aaa31faeb1eb0139b5cd60e3356.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/turbolinks-60c7d150bd7b7a75d67e6d1f0d4129a6.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/affix-ce5c0b5407d62be5615ffdb38c1e05e6.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/alert-d5e680444dce743d571f796b95476304.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/bootstrap-bb39dfa254101d5f6b983ce700085e54.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/bootstrap.min-4ce1f6d878cd58d167cb3bf519f936b9.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/button-b23e730382b83a989fb8fe412192a130.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/carousel-42361fcf004df9942171eb3de1e3133b.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/collapse-a0e6f517735f0f35f2c81f3a2d261034.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/dropdown-36a59c27cfc8b23eb95927491f2a7b22.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/modal-96d7f4574d7d11919b9f8c4afca9a419.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:49 -0300
+
+
+Started GET "/assets/application/popover-b9095622ab96f13485d5a4005915b4c7.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/application/scrollspy-247df1f8670a5ae4d26ffd37b9babca2.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/application/tooltip-3934459104c9aebe68497acc1134b3c3.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/application/tab-84af8aee68283055ff1b73ebb7c34c73.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/application/transition-3a9246b92c886dcaf853b49b5185d49c.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/combate-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/menu-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/recursos-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/welcome-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/tropas-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/assets/application-afd67c3597ae3cc22613e1ad8292e407.js?body=1" for 127.0.0.1 at 2014-11-23 20:24:50 -0300
+
+
+Started GET "/combate/preparados" for 127.0.0.1 at 2014-11-23 20:25:06 -0300
+Processing by CombateController#preparados as HTML
+Completed 401 Unauthorized in 22ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-11-23 20:25:06 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (11.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (346.1ms)
+Completed 200 OK in 664ms (Views: 646.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-23 20:25:17 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YhV36nqd0w+HxTIEyT8qgGMAYBos7aavzzxY7tSMkG+WiPPBGCuJ7weG2FpPxZCsfHpFSvIx6tz+5rZvjkmb/A==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "admin@admin.cl"]]
+Completed 401 Unauthorized in 17ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YhV36nqd0w+HxTIEyT8qgGMAYBos7aavzzxY7tSMkG+WiPPBGCuJ7weG2FpPxZCsfHpFSvIx6tz+5rZvjkmb/A==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendered devise/shared/_links.html.erb (5.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 392ms (Views: 272.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application/bootstrap.min-c22424a6864e5fc94e6c17fdb18261e1.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/combate-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/bootstrap-359cc99e5935ae25dc7342669a596480.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/menu-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/recursos-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/scaffolds-c18451178bf0711571ecda431710d948.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/tropas-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/welcome-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/jquery-dfb1e594c3e61a04cc388702c3feec1f.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application-20af26569f2ba574a209e4c3962173ef.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/jquery_ujs-ae280aaa31faeb1eb0139b5cd60e3356.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/turbolinks-60c7d150bd7b7a75d67e6d1f0d4129a6.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/alert-d5e680444dce743d571f796b95476304.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/bootstrap-bb39dfa254101d5f6b983ce700085e54.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/affix-ce5c0b5407d62be5615ffdb38c1e05e6.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/bootstrap.min-4ce1f6d878cd58d167cb3bf519f936b9.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/button-b23e730382b83a989fb8fe412192a130.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/carousel-42361fcf004df9942171eb3de1e3133b.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/collapse-a0e6f517735f0f35f2c81f3a2d261034.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/dropdown-36a59c27cfc8b23eb95927491f2a7b22.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/modal-96d7f4574d7d11919b9f8c4afca9a419.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/tooltip-3934459104c9aebe68497acc1134b3c3.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/tab-84af8aee68283055ff1b73ebb7c34c73.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/scrollspy-247df1f8670a5ae4d26ffd37b9babca2.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/popover-b9095622ab96f13485d5a4005915b4c7.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application/transition-3a9246b92c886dcaf853b49b5185d49c.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/combate-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/tropas-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/recursos-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/welcome-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/application-afd67c3597ae3cc22613e1ad8292e407.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started GET "/assets/menu-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:18 -0300
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"llj0e6EeSoa/BwOJBjyxGg6Vne9VYrtFZfJ3XA7fD29ixXBQw6gQZj9E6deAxgs2Ee+4v4u+9zZUKJndVBoE/A==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "admin@admin.cl"]]
+Completed 401 Unauthorized in 5ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"llj0e6EeSoa/BwOJBjyxGg6Vne9VYrtFZfJ3XA7fD29ixXBQw6gQZj9E6deAxgs2Ee+4v4u+9zZUKJndVBoE/A==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendered devise/shared/_links.html.erb (5.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 398ms (Views: 280.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application/bootstrap-359cc99e5935ae25dc7342669a596480.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/bootstrap.min-c22424a6864e5fc94e6c17fdb18261e1.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/recursos-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/scaffolds-c18451178bf0711571ecda431710d948.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/combate-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/menu-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/jquery-dfb1e594c3e61a04cc388702c3feec1f.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/welcome-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/tropas-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application-20af26569f2ba574a209e4c3962173ef.css?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/jquery_ujs-ae280aaa31faeb1eb0139b5cd60e3356.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/turbolinks-60c7d150bd7b7a75d67e6d1f0d4129a6.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/bootstrap.min-4ce1f6d878cd58d167cb3bf519f936b9.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/affix-ce5c0b5407d62be5615ffdb38c1e05e6.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/alert-d5e680444dce743d571f796b95476304.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/button-b23e730382b83a989fb8fe412192a130.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/bootstrap-bb39dfa254101d5f6b983ce700085e54.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/carousel-42361fcf004df9942171eb3de1e3133b.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/collapse-a0e6f517735f0f35f2c81f3a2d261034.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/dropdown-36a59c27cfc8b23eb95927491f2a7b22.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/tab-84af8aee68283055ff1b73ebb7c34c73.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/scrollspy-247df1f8670a5ae4d26ffd37b9babca2.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/modal-96d7f4574d7d11919b9f8c4afca9a419.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/popover-b9095622ab96f13485d5a4005915b4c7.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/tooltip-3934459104c9aebe68497acc1134b3c3.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application/transition-3a9246b92c886dcaf853b49b5185d49c.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/combate-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/menu-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/recursos-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/tropas-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/application-afd67c3597ae3cc22613e1ad8292e407.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+
+
+Started GET "/assets/welcome-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:25:22 -0300
+  [1m[36mUser Load (2.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2014-11-23 20:26:25 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (6.3ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (29.5ms)
+Completed 200 OK in 415ms (Views: 399.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application/bootstrap-359cc99e5935ae25dc7342669a596480.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/combate-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/bootstrap.min-c22424a6864e5fc94e6c17fdb18261e1.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/menu-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/recursos-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/scaffolds-c18451178bf0711571ecda431710d948.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/welcome-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application-20af26569f2ba574a209e4c3962173ef.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/tropas-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/alert-d5e680444dce743d571f796b95476304.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/affix-ce5c0b5407d62be5615ffdb38c1e05e6.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/bootstrap-bb39dfa254101d5f6b983ce700085e54.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/jquery-dfb1e594c3e61a04cc388702c3feec1f.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/turbolinks-60c7d150bd7b7a75d67e6d1f0d4129a6.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/jquery_ujs-ae280aaa31faeb1eb0139b5cd60e3356.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/bootstrap.min-4ce1f6d878cd58d167cb3bf519f936b9.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/carousel-42361fcf004df9942171eb3de1e3133b.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/button-b23e730382b83a989fb8fe412192a130.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/collapse-a0e6f517735f0f35f2c81f3a2d261034.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/dropdown-36a59c27cfc8b23eb95927491f2a7b22.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/popover-b9095622ab96f13485d5a4005915b4c7.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/scrollspy-247df1f8670a5ae4d26ffd37b9babca2.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/modal-96d7f4574d7d11919b9f8c4afca9a419.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/tab-84af8aee68283055ff1b73ebb7c34c73.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/transition-3a9246b92c886dcaf853b49b5185d49c.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application/tooltip-3934459104c9aebe68497acc1134b3c3.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/combate-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/menu-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/recursos-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/tropas-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/welcome-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started GET "/assets/application-afd67c3597ae3cc22613e1ad8292e407.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:26 -0300
+
+
+Started POST "/users" for 127.0.0.1 at 2014-11-23 20:26:32 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"N0+IHDwNUBYAJyoPzmQSl7p8puHLib4HlAKmfpkQqc3D0gw3XrsK9oBkwFFInqi7pQaDsRVV8nSl2Ej/w9WiXg==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@admin.cl' LIMIT 1
+  [1m[36mSQL (57.1ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-11-23 23:26:33.210522"], ["email", "admin@admin.cl"], ["encrypted_password", "$2a$10$DyZt0jM0Thgz/Es6iQ5azekKA20W2kC7my0CmvzIZXZiXVrbq8Ovq"], ["updated_at", "2014-11-23 23:26:33.210522"]]
+  [1m[35m (160.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "current_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_at" = ?, "last_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = 1  [["current_sign_in_at", "2014-11-23 23:26:33.433734"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_at", "2014-11-23 23:26:33.433734"], ["last_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2014-11-23 23:26:33.435929"]]
+  [1m[36m (98.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/combate/preparados
+Completed 302 Found in 728ms (ActiveRecord: 316.6ms)
+
+
+Started GET "/combate/preparados" for 127.0.0.1 at 2014-11-23 20:26:33 -0300
+Processing by CombateController#preparados as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? AND "users"."permiso" = ?[0m  [["id", 1], ["permiso", "usuario"]]
+  Rendered combate/preparados.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 312ms (Views: 281.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application/bootstrap-359cc99e5935ae25dc7342669a596480.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/bootstrap.min-c22424a6864e5fc94e6c17fdb18261e1.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/combate-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/recursos-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/menu-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/tropas-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/scaffolds-c18451178bf0711571ecda431710d948.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/welcome-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application-20af26569f2ba574a209e4c3962173ef.css?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/turbolinks-60c7d150bd7b7a75d67e6d1f0d4129a6.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/jquery_ujs-ae280aaa31faeb1eb0139b5cd60e3356.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/jquery-dfb1e594c3e61a04cc388702c3feec1f.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/affix-ce5c0b5407d62be5615ffdb38c1e05e6.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/alert-d5e680444dce743d571f796b95476304.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/collapse-a0e6f517735f0f35f2c81f3a2d261034.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/bootstrap.min-4ce1f6d878cd58d167cb3bf519f936b9.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/carousel-42361fcf004df9942171eb3de1e3133b.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/bootstrap-bb39dfa254101d5f6b983ce700085e54.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/button-b23e730382b83a989fb8fe412192a130.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/dropdown-36a59c27cfc8b23eb95927491f2a7b22.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/modal-96d7f4574d7d11919b9f8c4afca9a419.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/popover-b9095622ab96f13485d5a4005915b4c7.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/tab-84af8aee68283055ff1b73ebb7c34c73.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/scrollspy-247df1f8670a5ae4d26ffd37b9babca2.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/transition-3a9246b92c886dcaf853b49b5185d49c.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application/tooltip-3934459104c9aebe68497acc1134b3c3.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/combate-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/menu-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/tropas-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/welcome-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/application-afd67c3597ae3cc22613e1ad8292e407.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+
+
+Started GET "/assets/recursos-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:26:34 -0300
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "permiso" = ?, "updated_at" = ? WHERE "users"."id" = 1  [["permiso", "admin"], ["updated_at", "2014-11-23 23:26:58.724988"]]
+  [1m[36m (135.4ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/menu/menu_admin" for 127.0.0.1 at 2014-11-23 20:27:05 -0300
+Processing by MenuController#menu_admin as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered menu/menu_admin.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 293ms (Views: 285.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application/bootstrap-359cc99e5935ae25dc7342669a596480.css?body=1" for 127.0.0.1 at 2014-11-23 20:27:05 -0300
+
+
+Started GET "/assets/application/bootstrap.min-c22424a6864e5fc94e6c17fdb18261e1.css?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/combate-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/menu-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/recursos-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/tropas-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/welcome-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/scaffolds-c18451178bf0711571ecda431710d948.css?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/jquery_ujs-ae280aaa31faeb1eb0139b5cd60e3356.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application-20af26569f2ba574a209e4c3962173ef.css?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/jquery-dfb1e594c3e61a04cc388702c3feec1f.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/turbolinks-60c7d150bd7b7a75d67e6d1f0d4129a6.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/affix-ce5c0b5407d62be5615ffdb38c1e05e6.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/alert-d5e680444dce743d571f796b95476304.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/bootstrap-bb39dfa254101d5f6b983ce700085e54.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/button-b23e730382b83a989fb8fe412192a130.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/bootstrap.min-4ce1f6d878cd58d167cb3bf519f936b9.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/collapse-a0e6f517735f0f35f2c81f3a2d261034.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/carousel-42361fcf004df9942171eb3de1e3133b.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/tab-84af8aee68283055ff1b73ebb7c34c73.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/modal-96d7f4574d7d11919b9f8c4afca9a419.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/dropdown-36a59c27cfc8b23eb95927491f2a7b22.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/scrollspy-247df1f8670a5ae4d26ffd37b9babca2.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/popover-b9095622ab96f13485d5a4005915b4c7.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/tooltip-3934459104c9aebe68497acc1134b3c3.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application/transition-3a9246b92c886dcaf853b49b5185d49c.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/combate-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/recursos-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/menu-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/tropas-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/welcome-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/assets/application-afd67c3597ae3cc22613e1ad8292e407.js?body=1" for 127.0.0.1 at 2014-11-23 20:27:06 -0300
+
+
+Started GET "/tropas" for 127.0.0.1 at 2014-11-23 20:27:34 -0300
+Processing by TropasController#index as HTML
+  [1m[36mTropa Load (111.5ms)[0m  [1mSELECT "tropas".* FROM "tropas"[0m
+SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"
+  Rendered tropas/index.html.erb within layouts/application (117.5ms)
+Completed 500 Internal Server Error in 222ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"):
+  app/views/tropas/index.html.erb:21:in `_app_views_tropas_index_html_erb___1299676788509639679_69990251958840'
+  app/controllers/tropas_controller.rb:8:in `index'
+
+
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_source.erb (13.7ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_trace.html.erb (5.7ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.3ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (62.1ms)
+
+
+Started GET "/tropas" for 127.0.0.1 at 2014-11-23 20:27:36 -0300
+Processing by TropasController#index as HTML
+  [1m[35mTropa Load (3.3ms)[0m  SELECT "tropas".* FROM "tropas"
+SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"
+  Rendered tropas/index.html.erb within layouts/application (8.7ms)
+Completed 500 Internal Server Error in 14ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: tropas: SELECT "tropas".* FROM "tropas"):
+  app/views/tropas/index.html.erb:21:in `_app_views_tropas_index_html_erb___1299676788509639679_69990251958840'
+  app/controllers/tropas_controller.rb:8:in `index'
+
+
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_source.erb (14.8ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_trace.html.erb (5.2ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/_web_console.html.erb (1.2ms)
+  Rendered /home/yao/.rvm/gems/ruby-2.1.3/gems/web-console-2.0.0.beta4/lib/action_dispatch/templates/rescues/diagnostics.html.erb within rescues/layout (41.4ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_recursos_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_recursos_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tropas_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tropas_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_recursos_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_recursos_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tropas_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tropas_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CrearTablaTropas (20141123233246)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (24.7ms)[0m  [1mCREATE TABLE "tropas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nombre" varchar, "costo" integer, "ataque" integer, "defensa" integer, "num_guerreros" integer, "historia" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141123233246"]]
+  [1m[36m (115.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_recursos_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_recursos_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_recursos_users_on_recurso_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tropas_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tropas_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tropas_users_on_tropa_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started GET "/tropas" for 127.0.0.1 at 2014-11-23 20:33:29 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TropasController#index as HTML
+  [1m[35mTropa Load (0.2ms)[0m  SELECT "tropas".* FROM "tropas"
+  Rendered tropas/index.html.erb within layouts/application (6.0ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 871ms (Views: 832.6ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/application/bootstrap-359cc99e5935ae25dc7342669a596480.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/scaffolds-c18451178bf0711571ecda431710d948.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/recursos-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/menu-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/combate-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/bootstrap.min-c22424a6864e5fc94e6c17fdb18261e1.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/tropas-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/welcome-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application-20af26569f2ba574a209e4c3962173ef.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/jquery-dfb1e594c3e61a04cc388702c3feec1f.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/jquery_ujs-ae280aaa31faeb1eb0139b5cd60e3356.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/turbolinks-60c7d150bd7b7a75d67e6d1f0d4129a6.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/alert-d5e680444dce743d571f796b95476304.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/affix-ce5c0b5407d62be5615ffdb38c1e05e6.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/bootstrap-bb39dfa254101d5f6b983ce700085e54.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/bootstrap.min-4ce1f6d878cd58d167cb3bf519f936b9.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/button-b23e730382b83a989fb8fe412192a130.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/carousel-42361fcf004df9942171eb3de1e3133b.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/collapse-a0e6f517735f0f35f2c81f3a2d261034.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/modal-96d7f4574d7d11919b9f8c4afca9a419.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/dropdown-36a59c27cfc8b23eb95927491f2a7b22.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/popover-b9095622ab96f13485d5a4005915b4c7.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/scrollspy-247df1f8670a5ae4d26ffd37b9babca2.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:31 -0300
+
+
+Started GET "/assets/application/tab-84af8aee68283055ff1b73ebb7c34c73.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:32 -0300
+
+
+Started GET "/assets/combate-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:32 -0300
+
+
+Started GET "/assets/application/tooltip-3934459104c9aebe68497acc1134b3c3.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:32 -0300
+
+
+Started GET "/assets/application/transition-3a9246b92c886dcaf853b49b5185d49c.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:32 -0300
+
+
+Started GET "/assets/menu-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:32 -0300
+
+
+Started GET "/assets/recursos-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:32 -0300
+
+
+Started GET "/assets/tropas-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:32 -0300
+
+
+Started GET "/assets/application-afd67c3597ae3cc22613e1ad8292e407.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:32 -0300
+
+
+Started GET "/assets/welcome-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:32 -0300
+
+
+Started GET "/tropas/new" for 127.0.0.1 at 2014-11-23 20:33:37 -0300
+Processing by TropasController#new as HTML
+  Rendered tropas/_form.html.erb (214.6ms)
+  Rendered tropas/new.html.erb within layouts/application (249.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 575ms (Views: 566.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/tropas" for 127.0.0.1 at 2014-11-23 20:33:53 -0300
+Processing by TropasController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"g0IZPD2yyMTeHbltT8J+DN+3cbYmAbkYu9UiybRKzqp3350XXwSSJF5eUzPJOMQgwM1U5vjd9WuKD8xI7o/FOQ==", "tropa"=>{"nombre"=>"Demacia", "costo"=>"3500", "ataque"=>"75", "defensa"=>"98", "num_guerreros"=>"100", "historia"=>"Demacia OP"}, "commit"=>"Create Tropa"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (16.4ms)[0m  INSERT INTO "tropas" ("ataque", "costo", "created_at", "defensa", "historia", "nombre", "num_guerreros", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["ataque", 75], ["costo", 3500], ["created_at", "2014-11-23 23:33:53.708217"], ["defensa", 98], ["historia", "Demacia OP"], ["nombre", "Demacia"], ["num_guerreros", 100], ["updated_at", "2014-11-23 23:33:53.708217"]]
+  [1m[36m (120.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/tropas/1
+Completed 302 Found in 164ms (ActiveRecord: 137.2ms)
+
+
+Started GET "/tropas/1" for 127.0.0.1 at 2014-11-23 20:33:53 -0300
+Processing by TropasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTropa Load (0.3ms)[0m  SELECT  "tropas".* FROM "tropas" WHERE "tropas"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered tropas/show.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 295ms (Views: 274.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application/bootstrap-359cc99e5935ae25dc7342669a596480.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/bootstrap.min-c22424a6864e5fc94e6c17fdb18261e1.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/combate-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/tropas-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/scaffolds-c18451178bf0711571ecda431710d948.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/menu-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/recursos-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/welcome-c15e1c77cb5b3534b610348cb9f3c56d.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/jquery_ujs-ae280aaa31faeb1eb0139b5cd60e3356.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/jquery-dfb1e594c3e61a04cc388702c3feec1f.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application-20af26569f2ba574a209e4c3962173ef.css?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/turbolinks-60c7d150bd7b7a75d67e6d1f0d4129a6.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/affix-ce5c0b5407d62be5615ffdb38c1e05e6.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/bootstrap-bb39dfa254101d5f6b983ce700085e54.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/alert-d5e680444dce743d571f796b95476304.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/button-b23e730382b83a989fb8fe412192a130.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/bootstrap.min-4ce1f6d878cd58d167cb3bf519f936b9.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/carousel-42361fcf004df9942171eb3de1e3133b.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/collapse-a0e6f517735f0f35f2c81f3a2d261034.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/dropdown-36a59c27cfc8b23eb95927491f2a7b22.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/modal-96d7f4574d7d11919b9f8c4afca9a419.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/popover-b9095622ab96f13485d5a4005915b4c7.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/scrollspy-247df1f8670a5ae4d26ffd37b9babca2.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/tab-84af8aee68283055ff1b73ebb7c34c73.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/tooltip-3934459104c9aebe68497acc1134b3c3.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application/transition-3a9246b92c886dcaf853b49b5185d49c.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/combate-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/recursos-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/menu-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/application-afd67c3597ae3cc22613e1ad8292e407.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/tropas-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/assets/welcome-5cf9e471f6dbffd4600ae141132a5888.js?body=1" for 127.0.0.1 at 2014-11-23 20:33:54 -0300
+
+
+Started GET "/tropas" for 127.0.0.1 at 2014-11-23 20:33:56 -0300
+Processing by TropasController#index as HTML
+  [1m[35mTropa Load (0.9ms)[0m  SELECT "tropas".* FROM "tropas"
+  Rendered tropas/index.html.erb within layouts/application (4.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 333ms (Views: 331.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/menu/menu_admin" for 127.0.0.1 at 2014-11-23 20:34:00 -0300
+Processing by MenuController#menu_admin as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered menu/menu_admin.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 319ms (Views: 270.6ms | ActiveRecord: 0.2ms)
