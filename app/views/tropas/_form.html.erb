@@ -1,0 +1,41 @@
+<%= form_for(@tropa) do |f| %>
+  <% if @tropa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tropa.errors.count, "error") %> prohibited this tropa from being saved:</h2>
+
+      <ul>
+      <% @tropa.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :costo %><br>
+    <%= f.number_field :costo %>
+  </div>
+  <div class="field">
+    <%= f.label :ataque %><br>
+    <%= f.number_field :ataque %>
+  </div>
+  <div class="field">
+    <%= f.label :defensa %><br>
+    <%= f.number_field :defensa %>
+  </div>
+  <div class="field">
+    <%= f.label :num_guerreros %><br>
+    <%= f.number_field :num_guerreros %>
+  </div>
+  <div class="field">
+    <%= f.label :historia %><br>
+    <%= f.text_area :historia %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

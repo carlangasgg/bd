@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  costo: 1
+  ataque: 1
+  defensa: 1
+  num_guerreros: 1
+  historia: MyText
+
+two:
+  nombre: MyString
+  costo: 1
+  ataque: 1
+  defensa: 1
+  num_guerreros: 1
+  historia: MyText

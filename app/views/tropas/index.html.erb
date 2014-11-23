@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tropas</h1><br>
+<a class="btn btn-default" href="/menu/menu_admin" >Menú de Administrador</a> <br>
+
+<div class="col-lg-7 col-lg-offset-3">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Costo</th>
+        <th>Ataque</th>
+        <th>Defensa</th>
+        <th>Número de guerreros</th>
+        <th>Historia</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @tropas.each do |tropa| %>
+        <tr>
+          <td><%= tropa.nombre %></td>
+          <td><%= tropa.costo %></td>
+          <td><%= tropa.ataque %></td>
+          <td><%= tropa.defensa %></td>
+          <td><%= tropa.num_guerreros %></td>
+          <td><%= tropa.historia %></td>
+          <td><%= link_to 'Editar', edit_tropa_path(tropa) %></td>
+          <td><%= link_to 'Borrar', tropa, method: :delete, data: { confirm: '¿Desea eliminar la tropa seleccionada?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<a class="btn btn-default" href="/tropas/new" >Agregar nueva tropa</a> <br>
+</div>
+<br>
+
+

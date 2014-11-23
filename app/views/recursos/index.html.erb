@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Recursos</h1><br>
+<a class="btn btn-default" href="/menu/menu_admin" >Menú de Administrador</a> <br>
+
+
+<div class="col-lg-7 col-lg-offset-3">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @recursos.each do |recurso| %>
+        <tr>
+          <td><%= recurso.nombre %></td>
+          <!--<td><%= link_to 'Ver', recurso %></td>-->
+          <td><%= link_to 'Editar', edit_recurso_path(recurso) %></td>
+          <td><%= link_to 'Borrar', recurso, method: :delete, data: { confirm: '¿Desea eliminar el recurso?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<a class="btn btn-default" href="/recursos/new" >Agregar nuevo producto</a> <br>
+</div>
+<br>
+
+

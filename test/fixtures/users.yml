@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  puntos_experiencia: 1
+  nivel: 1
+  partidas_ganadas: 1
+  partidas_perdidas: 1
+
+two:
+  puntos_experiencia: 1
+  nivel: 1
+  partidas_ganadas: 1
+  partidas_perdidas: 1

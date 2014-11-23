@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @tropa.nombre %>
+</p>
+
+<p>
+  <strong>Costo:</strong>
+  <%= @tropa.costo %>
+</p>
+
+<p>
+  <strong>Ataque:</strong>
+  <%= @tropa.ataque %>
+</p>
+
+<p>
+  <strong>Defensa:</strong>
+  <%= @tropa.defensa %>
+</p>
+
+<p>
+  <strong>Num guerreros:</strong>
+  <%= @tropa.num_guerreros %>
+</p>
+
+<p>
+  <strong>Historia:</strong>
+  <%= @tropa.historia %>
+</p>
+
+<%= link_to 'Edit', edit_tropa_path(@tropa) %> |
+<%= link_to 'Back', tropas_path %>

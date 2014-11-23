@@ -1,0 +1,32 @@
+
+<h1>Usuario</h1>
+<% if user_signed_in? and current_user.permiso == "usuario" %>
+
+	<div class="col-lg-6 col-lg-offset-3">
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Puntos de experiecia</th>
+					<th>Nivel</th>
+					<th>Victorias</th>
+					<th>Derrotas</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @user.each do |u| %>
+				<tr>
+					<td><%= u.puntos_experiencia %></td>
+					<td><%= u.nivel %></td>
+					<td><%= u.partidas_ganadas %></td>
+					<td><%= u.partidas_perdidas %></td>
+				</tr>
+			<% end -%>
+			</tbody>
+		</table>
+	</div>
+<%else%>
+	Esta sección es exclusiva para usuarios. <br><br>
+
+	<a class="btn btn-sm btn-default" href="/" role="button">Ir a inicio</a>
+<% end -%>
+

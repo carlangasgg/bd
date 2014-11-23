@@ -1,0 +1,9 @@
+<% if current_user.permiso == "admin"%>
+<div class="col-lg-offset-4">
+	<a class="btn btn-lg btn-default" href="/recursos" role="button">Administrar recursos</a>
+	<a class="btn btn-lg col-lg-offset-1 btn-default" href="/tropas" role="button">Administrar tropas</a>
+</div>
+<% else %>
+No tienes permisos para estar acá :(
+
+<% end %>
