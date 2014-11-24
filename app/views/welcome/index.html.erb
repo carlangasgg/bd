@@ -1,1 +1,10 @@
-<a class="btn btn-lg btn-default col-lg-5 col-lg-offset-4" href="/combate/preparados" >¡Pelea por tu honor!</a>
+<% if user_signed_in? %>
+	<%if current_user.permiso == "usuario"%>
+		<a class="btn btn-lg btn-default col-lg-5 col-lg-offset-4" href="/combate/preparados" >¡Pelea por tu honor!</a><br><br><br><br>
+		<a class="btn btn-lg btn-default col-lg-3 col-lg-offset-5" href="/menu/menu_user" >Revisa tu estadística</a>
+	<%else%>
+		<a class="btn btn-lg btn-default col-lg-5 col-lg-offset-4" href="/menu/menu_admin" >Ingresar al panel de administrador</a>
+	<% end %>
+<%else%>
+	<a class="btn btn-lg btn-default col-lg-5 col-lg-offset-4" href="/combate/preparados" >¡Pelea por tu honor!</a>
+<% end %>

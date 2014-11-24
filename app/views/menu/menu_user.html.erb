@@ -23,7 +23,43 @@
 			<% end -%>
 			</tbody>
 		</table>
-	</div>
+	</div> <br>
+	<div class="col-lg-6 col-lg-offset-3">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Recursos disponibles</th>
+					<th>Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @recursos.each do |rec| %>
+				<tr>
+					<td><%= rec.nombre %></td>
+					<td>asdf</td>
+				</tr>
+			<% end -%>
+			</tbody>
+		</table>
+	</div>	
+	<div class="col-lg-6 col-lg-offset-3">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Tropa disponible</th>
+					<th>Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @tropas.each do |tro| %>
+				<tr>
+					<td><%= tro.nombre %></td>
+					<td>asdf</td>
+				</tr>
+			<% end -%>
+			</tbody>
+		</table>
+	</div>		
 <%else%>
 	Esta sección es exclusiva para usuarios. <br><br>
 
