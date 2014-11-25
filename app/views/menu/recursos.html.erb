@@ -1,0 +1,23 @@
+<p>asd</p>
+
+
+
+	<div class="col-lg-6 col-lg-offset-3">
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Recurso</th>
+
+				</tr>
+			</thead>
+			<tbody>
+			<% @recursos.each do |rec| %>
+				<tr>
+					<td><%= rec.nombre%></td>
+					
+					
+				</tr>
+			<% end -%>
+			</tbody>
+		</table>
+	</div> 

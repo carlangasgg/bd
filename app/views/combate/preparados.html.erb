@@ -22,15 +22,16 @@
       <% end %>
     </tbody>
   </table>
-  <%if @rival_id.permiso != "usuario"%>
+  <%if @enemigo.permiso != "usuario"%>
     <p class="col-lg-5 col-lg-offset-2">No puedes iniciar un combate, la tierra te ha perdonado la vida. Inténtalo de nuevo.</p><br>
     <a class="btn btn-lg btn-default" href="/combate/preparados">Intentar de nuevo</a>
-  <%elsif @rival_id.id == current_user.id%> 
+  <%elsif @enemigo.id == current_user.id%> 
     <p class="col-lg-5 col-lg-offset-2">No puedes luchar contra tí mismo. Desafía al destino intentándolo otra vez.</p><br>
     <a class="btn btn-lg btn-default" href="/combate/preparados">Intentar de nuevo</a>
   <%else%>
-  <div class="col-lg-6 col-lg-offset-4">
-    <a class="btn btn-lg btn-warning" href="/combate/batalla">¡Inicia el combate!</a>
+  <div class="col-lg-6 col-lg-offset-3 btn btn-lg btn-warning">
+    <td><%= link_to '¡Inicia el combate!', :controller=>"combate", :action=> "iniciar_combate", :id_rival =>@enemigo.id%></td>
+    <!--<a class="btn btn-lg btn-warning" href="/combate/batalla">¡Inicia el combate!</a>-->
   </div>
   <% end -%>
 </div>

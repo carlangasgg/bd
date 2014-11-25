@@ -8,11 +8,26 @@ Rails.application.routes.draw do
 
   get 'menu/menu_admin'
 
+  get 'menu/tropas'
+
+  get 'menu/recursos'  
+
   get 'welcome/index'
 
+  get 'combate/preparados'
+
+  get 'combate/victoria'
+
+  get 'combate/empate'
+
+  get 'combate/derrota'
+
+  post ':controller(/:action(/:id))'
+  get  ':controller(/:action(/:id))'
+
   #metodos para las vistas de combate
-  get "/combate/preparados" => "combate#preparados"
-  get "/combate/batalla" => "combate#batalla"
+  #get "/combate/preparados" => "combate#preparados"
+  #get "/combate/batalla" => "combate#batalla"
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -29,7 +44,7 @@ Rails.application.routes.draw do
 
   #get  '/batalla_combate' =>  'combate#batalla'
    
-
+  #get "menu/agregartropa/:id" => 
 
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

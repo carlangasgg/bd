@@ -1,3 +1,4 @@
-class Recurso < ActiveRecord::Base
+ class Recurso < ActiveRecord::Base
 	has_and_belongs_to_many :users
+
 end
