@@ -1,28 +1,64 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Especificaciones:
+	*Version de Ruby: 2.1.3
+	*Version de Rails: 4.2.0.beta2
+	*Editor de texto utilizado: Sublime Text
+	*Entorno de trabajo: Linux - Fedora 
 
-Things you may want to cover:
+Supuestos:
+	*El README se escribira sin tildes para evitar problemas de caracteres
+	*No se consiguio generar alguna funcion que permita al usuario reclamar recursos entre periodos de tiempo. Para compensar, se realizo un algoritmo de limitacion de tropas/recursos, que se explicara mas adelante
+	*Se confia que el usuario no es malintencionado, y que intentara seguir la logica del juego que se explicara mas adelante
+	*Se utilizan todas las vistas que se generaron a traves de scaffold para tropas y recursos
+	*Para efectos de crear un administrador, se crea inicialmente como usuario y se modifica via consola su atributo "permiso" de "usuario" a "admin"
 
-* Ruby version
+Estrategia utilizada:
 
-* System dependencies
+	Se nombraran a continuacion los controladores y sus vistas asociadas, pero antes se mencionara el modelo utilizado:
 
-* Configuration
+	**Modelo**
 
-* Database creation
+	Se agregaron al proyecto las tablas:
 
-* Database initialization
+		*Recurso
+		*Tropa
+		*User
+	Y las tablas intermedias entre Recurso - User y Tropa - User
 
-* How to run the test suite
+	**Vistas y Controladores**
 
-* Services (job queues, cache servers, search engines, etc.)
+		combate_controller: *preparados.html
+							*victoria.html
+							*derrota.html
+							*empate.html
+		
+		menu_controller:	*menu_admin.html
+							*menu_user.html
+							*recursos.html
+							*tropas.html
 
-* Deployment instructions
-
-* ...
+		welcome_controller:	*index.html
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+	**Secuencia**
+
+	Una vez en el inicio del sitio, aparece un boton que invita a la persona a jugar, un navbar que cuenta con un boton a inicio y opciones para los usuarios. Al presionar el boton "pelea por tu honor", se redirecciona a la persona a la vista de Devise "sign_up". Una vez registrado, se redirecciona a preparados.html, en donde el usuario puede ver sus estadisticas y las del rival elegido aleatoreamente, en donde analizara si es conveniente atacar o no. Si decide atacar, segun la diferencia entre su ataque y la defensa del rival, sera redireccionado a victoria.html, derrota.html o empate.html, segun sea el caso, modificando en los metodos del controlador los datos de los usuarios segun la logica del juego (agregar victorias y derrotas, sumar puntos de experiencia, entre otros). Sea cual sea el caso, se redireccionara a menu_user.html. Si se decide rendirse, se redirigira al perfil del usuario eliminando sus tropas y recursos, y penalizando con -10 puntos de experiencia al usuario.
+	De todas formas, si en la vista preparados.html decide dirigirse a menu_user.html desde el navbar, sera permitido sin problemas, puesto a que como recien se registro, no contara con las tropas suficientes para jugar.
+	
+	Dentro de menu_user.html, el usuario podra ver sus datos, tropas y recursos asociados, permitiendo asociarlos al usuario. 
+	En tropas.html del controlador combate_controller, se muestran las tropas que estan disponibles para elegir. Solo se permitira la asociacion si el usuario cuenta con el recurso que solicita la tropa. Si el usuario cuenta con ese recurso, se eliminara dicho recurso al usuario, y se agregara dicha tropa al usuario. Cabe destacar que solo una tropa se asociara al usuario.
+	En recursos.html del mismo controlador, se muestran los recursos existentes en la base de datos, permitiendo al usuario reclamar solo dos de los recursos.
+
+	Sobre los algoritmos que hacen funcionar el juego, presentes en combate_controller, se encuentran los siguientes metodos:
+
+		*iniciar_combate: Aca se comparan el ataque del usuario con la defensa del rival. Si el ataque del usuario es mayor, se eliminan los recursos y tropas del enemigo, se suman puntos de experiencias al usuario y se redirecciona a victoria.html, en donde esta el metodo victoria que se explicara su importancia a continuacion.
+
+		*victoria: Si el usuario es dirigido aca a traves de la vista preparados.html, se ejecutan las funciones matematicas dentro del metodo que modifica el numero de victorias y nivel (si es que corresponde) del usuario.
+
+		Si en iniciar_combate, el ataque del usuario es igual a la defensa del enemigo, se envia a la vista empate.html.
+		Si en iniciar_combate, el ataque del usuario es menor a la defensa del enemigo, se eliminan las tropas y recursos del usuario, y se restan puntos de experiencia al usuario
+
+	Para el caso de un administrador, al hacer login se direcciona a index.html, donde se le da la opcion de entrar al panel de control del sitio. Se muestran 2 botones: administrar tropas y administrar recursos. En la primera se permite crear, modificar y eliminar tropas, y en la segunda se permite agregar, modificar y eliminar recursos. En el caso de agregar tropas, no supe agregar un dropdown en esa vista, por lo que es necesario escribir un string con el nombre de un recurso ya existente para rellenar este campo, por lo que se confia en el administrador de que ingrese un nombre valido.
+
+

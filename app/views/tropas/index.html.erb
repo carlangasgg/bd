@@ -11,7 +11,7 @@
         <th>Costo</th>
         <th>Ataque</th>
         <th>Defensa</th>
-        <th>Número de guerreros</th>
+        <th>Recurso</th>
         <th>Historia</th>
         <th colspan="3"></th>
       </tr>
@@ -24,7 +24,7 @@
           <td><%= tropa.costo %></td>
           <td><%= tropa.ataque %></td>
           <td><%= tropa.defensa %></td>
-          <td><%= tropa.num_guerreros %></td>
+          <td><%= tropa.recurso %></td>
           <td><%= tropa.historia %></td>
           <td><%= link_to 'Editar', edit_tropa_path(tropa) %></td>
           <td><%= link_to 'Borrar', tropa, method: :delete, data: { confirm: '¿Desea eliminar la tropa seleccionada?' } %></td>

@@ -44,6 +44,5 @@ group :development, :test do
 
   gem 'devise'
 
-  #gem 'countdown'
 end
 

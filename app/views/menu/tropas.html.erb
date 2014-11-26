@@ -1,12 +1,9 @@
-<p>asd</p>
-
-
-
 	<div class="col-lg-6 col-lg-offset-3">
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
 					<th>Tropa</th>
+					<th>Recurso necesario</th>
 
 				</tr>
 			</thead>
@@ -14,8 +11,8 @@
 			<% @tropa.each do |trop| %>
 				<tr>
 					<td><%= trop.nombre%></td>
+					<td><%= trop.recurso%></td>
 					<td><%= link_to 'Agregar', :controller=>"menu", :action=> "agregar_tropa", :id_tropa => trop.id%></td>
-					
 				</tr>
 			<% end -%>
 			</tbody>

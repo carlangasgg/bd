@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123233246) do
+ActiveRecord::Schema.define(version: 20141125195814) do
 
   create_table "recursos", force: true do |t|
     t.string   "nombre"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20141123233246) do
     t.integer  "costo"
     t.integer  "ataque"
     t.integer  "defensa"
-    t.integer  "num_guerreros"
     t.text     "historia"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "recurso"
   end
 
   create_table "tropas_users", id: false, force: true do |t|

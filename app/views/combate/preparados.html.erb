@@ -1,13 +1,41 @@
-<h1>Se escuchan vientos de guerra...</h1>
+<h1>Se escuchan vientos de guerra...</h1><br>
 
 <div class="col-lg-7 col-lg-offset-3">
+<h3>Tus estadísticas</h3>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Nivel</th>
+        <th>Victorias</th>
+        <th>Ataque</th>
+        <th>Defensa</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @rival.each do |riv| %>
+        <tr>
+          <td><%= current_user.nivel %></td>
+          <td><%= current_user.partidas_ganadas %></td>
+          <td><%= @ataque_usuario%></td>
+          <td><%= @defensa_usuario%></td>
+                    
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-lg-7 col-lg-offset-3">
+<h3>Estadísticas del rival</h3>
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
         <th>Rival</th>
         <th>Nivel</th>
         <th>Victorias</th>
-        <th colspan="3"></th>
+        <th>Ataque</th>
+        <th>Defensa</th>
       </tr>
     </thead>
 
@@ -17,6 +45,8 @@
           <td><%= riv.email %></td>
           <td><%= riv.nivel %></td>
           <td><%= riv.partidas_ganadas %></td>
+          <td><%= @ataque_rival%></td>
+          <td><%= @defensa_rival%></td>
                     
         </tr>
       <% end %>
@@ -29,13 +59,15 @@
     <p class="col-lg-5 col-lg-offset-2">No puedes luchar contra tí mismo. Desafía al destino intentándolo otra vez.</p><br>
     <a class="btn btn-lg btn-default" href="/combate/preparados">Intentar de nuevo</a>
   <%else%>
-  <div class="col-lg-6 col-lg-offset-3 btn btn-lg btn-warning">
-    <td><%= link_to '¡Inicia el combate!', :controller=>"combate", :action=> "iniciar_combate", :id_rival =>@enemigo.id%></td>
-    <!--<a class="btn btn-lg btn-warning" href="/combate/batalla">¡Inicia el combate!</a>-->
+  <div class="col-lg-4 col-lg-offset-1 btn btn-lg btn-warning">
+    <%= link_to '¡Inicia el combate!', :controller=>"combate", :action=> "iniciar_combate", :id_rival =>@enemigo.id%>
   </div>
+  <div class="col-lg-4 col-lg-offset-2 btn btn-lg btn-danger">
+    <%= link_to 'Rendirse', :controller=>"combate", :action=> "rendicion"=%>
+  </div>  
   <% end -%>
 </div>
 
 <br>
-<%=@random%> 
+
 

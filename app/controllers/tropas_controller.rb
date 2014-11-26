@@ -1,5 +1,6 @@
 class TropasController < ApplicationController
   before_action :set_tropa, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   respond_to :html
 
@@ -24,6 +25,7 @@ class TropasController < ApplicationController
     @tropa = Tropa.new(tropa_params)
     @tropa.save
     respond_with(@tropa)
+
   end
 
   def update
@@ -42,6 +44,6 @@ class TropasController < ApplicationController
     end
 
     def tropa_params
-      params.require(:tropa).permit(:nombre, :costo, :ataque, :defensa, :num_guerreros, :historia)
+      params.require(:tropa).permit(:nombre, :costo, :ataque, :defensa, :recurso, :historia)
     end
 end

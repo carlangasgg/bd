@@ -1,5 +1,5 @@
 <h2>Perfil de <%= current_user.email%></h2>
-<a class="col-lg-offset-6 btn btn-sm btn-default" href="/" role="button">Ir a inicio</a><br><br><br> 
+<a class="col-lg-4 col-lg-offset-4 btn btn-md btn-default" href="/" role="button">Ir a inicio</a><br><br><br> 
 <% if user_signed_in? and current_user.permiso == "usuario" %>
 
 	<div class="col-lg-6 col-lg-offset-3">
@@ -35,7 +35,6 @@
 			<thead>
 				<tr>
 					<th>Recursos disponibles</th>
-					<th>Cantidad</th>
 					<th><a class="col-lg-8 col-lg-offset-3 btn btn-sm btn-default" href="/menu/recursos" role="button">Reclamar recursos</a></th>
 				</tr>
 			</thead>
@@ -72,9 +71,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div>
-		<a class="col-lg-offset-6 btn btn-sm btn-default" href="/" role="button">Ir a inicio</a>
-	</div>
+
 			
 <%else%>
 	Esta sección es exclusiva para usuarios. <br><br>

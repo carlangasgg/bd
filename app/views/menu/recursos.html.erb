@@ -1,7 +1,3 @@
-<p>asd</p>
-
-
-
 	<div class="col-lg-6 col-lg-offset-3">
 		<table class="table table-bordered table-hover">
 			<thead>
@@ -14,6 +10,7 @@
 			<% @recursos.each do |rec| %>
 				<tr>
 					<td><%= rec.nombre%></td>
+					<td><%= link_to 'Agregar', :controller=>"menu", :action=> "agregar_recurso", :id_recurso => rec.id%></td>
 					
 					
 				</tr>

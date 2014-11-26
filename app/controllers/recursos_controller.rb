@@ -1,6 +1,6 @@
 class RecursosController < ApplicationController
   before_action :set_recurso, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!#, :except => [:show, :index]
+  before_filter :authenticate_user!
   respond_to :html, :xml, :json
 
   def index
